@@ -14,6 +14,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
+import { cn } from "@/lib/utils";
+import UserAvatar from "@/components/UserAvatar";
+import BotAvatar from "@/components/BotAvatar";
 
 export default function ConversationPage() {
 
@@ -110,10 +113,18 @@ export default function ConversationPage() {
         {messages.length === 0 && !isLoading && (
           <Empty label="No Conversation Started."/>
         )}
-          <div className="flex flex-col-reverse gap-y-4">
+          <div className="flex flex-col-reverse gap-y-4 mx-4 md:mx-8">
             {messages.map((message)=>(
-              <div key={message.content}>
+              <div 
+              key={message.content}
+              className={cn("p-8 w-full  flex items-start gap-x-8 rounded-lg",
+                message.role === "user" ? "bg-white border border-black/10" : "bg-muted"
+              )}
+              >
+                {message.role === "user" ? <UserAvatar/> : <BotAvatar/>}
+                <p className="text-sm">
                   {message.content}
+                </p>
               </div>
            ))}
 
