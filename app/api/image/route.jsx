@@ -66,7 +66,7 @@ export async function POST(req) {
         const body = await req.json();
         const { amount,prompt,resolution } = body;
 
-        console.log("request body in route: ", body)
+        
 
         if (!userId) {
             return new NextResponse("Unauthorized", { status: 401 });
@@ -83,7 +83,7 @@ export async function POST(req) {
         }
 
         let dimensions = resolution.split('x');
-        console.log("dimensions: ", dimensions);
+        
         
         const options = {
             method: 'POST',
@@ -104,7 +104,7 @@ export async function POST(req) {
         return NextResponse.json(response.data);
 
     } catch (error) {
-        console.log("Error in conversation route: ", error);
+        console.log("Error in image route: ", error);
         return new NextResponse("error", { status: 500 });
     }
 }
