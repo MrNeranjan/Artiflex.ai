@@ -19,6 +19,7 @@ import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/UserAvatar";
 import BotAvatar from "@/components/BotAvatar";
+import toast from "react-hot-toast";
 
 export default function CodePage() {
 
@@ -61,6 +62,8 @@ export default function CodePage() {
 
       if(error?.response?.status === 403){
         proModal.open();
+      }else{
+        toast.error("Failed to generate response. Please try again later.");
       }
       console.log("Error in conversation page: ", error);
     }finally{

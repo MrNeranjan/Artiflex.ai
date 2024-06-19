@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/UserAvatar";
 import BotAvatar from "@/components/BotAvatar";
 import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 
 
 export default function ConversationPage() {
@@ -61,6 +62,8 @@ export default function ConversationPage() {
     } catch (error) {
       if(error?.response?.status === 403){
         proModal.open();
+      }else{
+        toast.error("Failed to generate response. Please try again later.");
       }
     }finally{
       router.refresh();

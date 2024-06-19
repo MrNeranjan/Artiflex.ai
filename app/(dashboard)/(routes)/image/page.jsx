@@ -16,6 +16,7 @@ import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
 import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 
 import {
   Select,
@@ -59,6 +60,8 @@ export default function ImagePage() {
     } catch (error) {
       if(error?.response?.status === 403){
         proModal.open();
+      }else{
+        toast.error("Failed to generate response. Please try again later.");
       }
       console.log("Error in conversation page: ", error);
     } finally {

@@ -16,6 +16,7 @@ import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import { useProModal } from "@/hooks/use-pro-modal";
 import { cn } from "@/lib/utils";
+import toast from "react-hot-toast";
 
 
 export default function MusicPage() {
@@ -47,6 +48,8 @@ export default function MusicPage() {
 
       if(error?.response?.status === 403){
         proModal.open();
+      }else{
+        toast.error("Failed to generate response. Please try again later.");
       }
       console.log("Error in music page: ", error);
     }finally{

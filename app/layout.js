@@ -6,6 +6,8 @@ import {
   ClerkProvider,
 
 } from '@clerk/nextjs'
+import ToasterProvider from "@/components/toaster-provider";
+import { CrispProvider } from "@/components/crisp-provider";
 
 export const metadata = {
   title: "InnoGen",
@@ -16,8 +18,10 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>
+        <CrispProvider/>
+        <body className={inter.className}>
           <ModalProvider />
+          <ToasterProvider/>
           {children}
         </body>
       </html>
