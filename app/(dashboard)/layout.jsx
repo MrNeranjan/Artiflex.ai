@@ -1,26 +1,28 @@
- 
-'use client'
-import React,{useEffect,useState} from "react";
-import Navbar from "@/components/navbar";
-import SideBar from "@/components/SideBar";
+
+import {Navbar} from "@/components/navbar";
+import {SideBar} from "@/components/SideBar";
 import {getAppLimitCount} from "@/lib/api-limit";
+import { useAuth } from "@clerk/nextjs";
 
 
-export default function DashboardLayout({ children }) {
 
-  // const count = await getAppLimitCount();
-  // console.log("count is",count);
+const DashboardLayout = async({children})=>{
+  
+  const count = await getAppLimitCount();
 
+  console.log("count inside DashboardLayout after async function",count);
+  
   return (
     <div className="h-full relative">
       <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0  bg-gray-900">
-        <SideBar applimitcount={4} />
+        <SideBar applimitcount={count}/>
       </div>
       <main className="md:pl-72">
-        <Navbar />
+        <Navbar applimitcount={count}/>
         {children}
       </main>
     </div>
   );
 }
 
+export default DashboardLayout;

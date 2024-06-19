@@ -1,5 +1,5 @@
-'use client'
 
+'use client'
 import React,{useState,useEffect} from 'react'
 import { Card, CardContent } from './ui/card';
 import {MAX_FREE_COUNTS} from "@/constants"
@@ -8,14 +8,17 @@ import { Button } from './ui/button';
 import { Zap } from 'lucide-react';
 import { useProModal } from '@/hooks/use-pro-modal';
 
-export default function FreeCounter({applimitcount}) {
+
+const FreeCounter=({applimitcount})=> {
   const [mounted, setMounted] = useState(false);
   const proModal = useProModal();
+  
 
   useEffect(() => setMounted(true), []);
 
   if (!mounted) return null;
 
+  
   return (
     <div className='px-3'>
       <Card className="bg-white/10 border-0">
@@ -35,3 +38,5 @@ export default function FreeCounter({applimitcount}) {
     </div>
   )
 }
+
+export default FreeCounter;

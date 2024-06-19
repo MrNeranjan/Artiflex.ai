@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 import { formSchema } from "./constants";
 import { Input } from "@/components/ui/input";

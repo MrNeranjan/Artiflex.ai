@@ -3,12 +3,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import FreeCounter from './FreeCounter'
 import { Montserrat } from 'next/font/google'
 
 import { cn } from '@/lib/utils'
 import { ImageIcon, LayoutDashboard, MessageSquare, Music, Settings, VideoIcon,Code } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-import FreeCounter from './FreeCounter'
 
 const montserrat = Montserrat({
   weight:"600",
@@ -62,9 +62,10 @@ const routes =[
  
 ]
 
-export default function SideBar({applimitcount=0}) {
+export const SideBar = ({applimitcount})=> {
   const pathname = usePathname();
-
+  
+  
   return (
     <div className='space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white'>
       <div className='px-3 py-2 flex-1'>
@@ -98,3 +99,4 @@ export default function SideBar({applimitcount=0}) {
     </div>
   )
 }
+
