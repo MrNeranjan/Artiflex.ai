@@ -49,6 +49,7 @@
 import { NextResponse } from "next/server";
 import axios from 'axios';
 import { getAuth } from '@clerk/nextjs/server';
+import { increaseAppLimit,checkAppLimit } from "@/lib/api-limit";
 
 // Ensure your RapidAPI key is set in your environment variables
 const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY;
@@ -75,6 +76,12 @@ export async function POST(req) {
             return new NextResponse("Messages not found", { status: 400 });
         }
 
+        const freeTrail = await checkAppLimit(req);
+
+        if(!freeTrail){
+            return new NextResponse("You have exceeded the free trial limit", { status: 403 });
+        }
+
         const options = {
             method: 'POST',
             url: RAPIDAPI_URL,
@@ -94,6 +101,7 @@ export async function POST(req) {
             }
         };
 
+        await increaseAppLimit(req);
         
         const response = await axios.request(options);
         console.log("Request to RapidAPI CodeRoute: ", response);

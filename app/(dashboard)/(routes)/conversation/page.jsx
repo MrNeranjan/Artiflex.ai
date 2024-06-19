@@ -17,11 +17,14 @@ import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/UserAvatar";
 import BotAvatar from "@/components/BotAvatar";
+import { useProModal } from "@/hooks/use-pro-modal";
+
 
 export default function ConversationPage() {
 
   const router = useRouter();
   const [messages, setMessages] = useState([]); // [ {role: "user", content: "Hello"}, {role: "ai", content: "Hi"}
+  const proModal =useProModal();
 
   //MAX TOKENS =256
   const form = useForm({
@@ -56,9 +59,9 @@ export default function ConversationPage() {
       form.reset();
 
     } catch (error) {
-
-      // TODO HANDLE PRO
-      console.log("Error in conversation page: ", error);
+      if(error?.response?.status === 403){
+        proModal.open();
+      }
     }finally{
       router.refresh();
     }

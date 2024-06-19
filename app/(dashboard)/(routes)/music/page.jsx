@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
+import { useProModal } from "@/hooks/use-pro-modal";
 import { cn } from "@/lib/utils";
 
 
@@ -21,6 +22,7 @@ export default function MusicPage() {
 
   const router = useRouter();
   const [music, setMusic] = useState(); 
+  const proModal =useProModal();
 
   //MAX TOKENS =256
   const form = useForm({
@@ -43,7 +45,9 @@ export default function MusicPage() {
 
     } catch (error) {
 
-      // TODO HANDLE PRO
+      if(error?.response?.status === 403){
+        proModal.open();
+      }
       console.log("Error in music page: ", error);
     }finally{
       router.refresh();

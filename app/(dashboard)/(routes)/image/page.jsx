@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 import {
   Select,
@@ -29,6 +30,7 @@ import Image from "next/image";
 export default function ImagePage() {
   const router = useRouter();
   const [images, setImages] = useState([]);
+  const proModal =useProModal();
 
   //MAX TOKENS =256
   const form = useForm({
@@ -55,7 +57,9 @@ export default function ImagePage() {
 
       form.reset();
     } catch (error) {
-      // TODO HANDLE PRO
+      if(error?.response?.status === 403){
+        proModal.open();
+      }
       console.log("Error in conversation page: ", error);
     } finally {
       router.refresh();

@@ -23,7 +23,7 @@ export default function CodePage() {
 
   const router = useRouter();
   const [messages, setMessages] = useState([]); // [ {role: "user", content: "Hello"}, {role: "ai", content: "Hi"}
-
+  const proModal =useProModal();
   //MAX TOKENS =256
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -58,7 +58,9 @@ export default function CodePage() {
 
     } catch (error) {
 
-      // TODO HANDLE PRO
+      if(error?.response?.status === 403){
+        proModal.open();
+      }
       console.log("Error in conversation page: ", error);
     }finally{
       router.refresh();

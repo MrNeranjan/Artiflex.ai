@@ -15,12 +15,14 @@ import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 
 export default function VideoPage() {
 
   const router = useRouter();
   const [video, setVideo] = useState(); 
+  const proModal =useProModal();
 
   //MAX TOKENS =256
   const form = useForm({
@@ -43,7 +45,9 @@ export default function VideoPage() {
 
     } catch (error) {
 
-      // TODO HANDLE PRO
+      if(error?.response?.status === 403){
+        proModal.open();
+      }
       console.log("Error in music page: ", error);
     }finally{
       router.refresh();

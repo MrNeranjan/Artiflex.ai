@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import { getAuth } from '@clerk/nextjs/server';
 import Replicate from "replicate";
+import { increaseAppLimit,checkAppLimit } from "@/lib/api-limit";
 
 
 const replicate = new Replicate({
@@ -22,6 +23,12 @@ export async function POST(req) {
 
         if (!prompt) {
             return new NextResponse("Messages not found", { status: 400 });
+        }
+
+        const freeTrail = await checkAppLimit(req);
+
+        if(!freeTrail){
+            return new NextResponse("You have exceeded the free trial limit", { status: 403 });
         }
 
         const response = await replicate.run(
@@ -45,7 +52,7 @@ export async function POST(req) {
           );
          
 
-        
+          await increaseAppLimit(req);
         
         return NextResponse.json(response);
 
