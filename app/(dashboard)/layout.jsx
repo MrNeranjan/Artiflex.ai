@@ -2,7 +2,7 @@
 import {Navbar} from "@/components/navbar";
 import {SideBar} from "@/components/SideBar";
 import {getAppLimitCount} from "@/lib/api-limit";
-import { useAuth } from "@clerk/nextjs";
+
 
 
 

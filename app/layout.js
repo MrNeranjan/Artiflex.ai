@@ -10,7 +10,7 @@ import ToasterProvider from "@/components/toaster-provider";
 import { CrispProvider } from "@/components/crisp-provider";
 
 export const metadata = {
-  title: "InnoGen",
+  title: "ArtiflexAI",
   description: "Devolped by Neranjan Pushpakumara",
 };
 
@@ -18,6 +18,9 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
+        <head>
+          <link rel="icon" href="/favicon.ico" sizes="any" />
+        </head>
         <CrispProvider/>
         <body className={inter.className}>
           <ModalProvider />
