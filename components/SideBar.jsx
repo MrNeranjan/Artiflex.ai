@@ -62,7 +62,7 @@ const routes =[
  
 ]
 
-export const SideBar = ({applimitcount})=> {
+const SideBar = ({applimitcount})=> {
   const pathname = usePathname();
   
   
