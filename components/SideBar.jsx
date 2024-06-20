@@ -100,3 +100,5 @@ export const SideBar = ({applimitcount})=> {
   )
 }
 
+export default SideBar;
+

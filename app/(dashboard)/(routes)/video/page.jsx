@@ -51,7 +51,7 @@ export default function VideoPage() {
       }else{
         toast.error("Failed to generate response. Please try again later.");
       }
-      console.log("Error in music page: ", error);
+     
     }finally{
       router.refresh();
     }

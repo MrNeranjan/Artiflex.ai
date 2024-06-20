@@ -63,7 +63,7 @@ export default function ImagePage() {
       }else{
         toast.error("Failed to generate response. Please try again later.");
       }
-      console.log("Error in conversation page: ", error);
+      
     } finally {
       router.refresh();
     }

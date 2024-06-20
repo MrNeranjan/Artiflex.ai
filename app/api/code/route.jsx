@@ -104,11 +104,11 @@ export async function POST(req) {
         await increaseAppLimit(req);
         
         const response = await axios.request(options);
-        console.log("Request to RapidAPI CodeRoute: ", response);
+        
         return NextResponse.json(response.data);
 
     } catch (error) {
-        console.log("Error in code route: ", error);
+        
         return new NextResponse("error", { status: 500 });
     }
 }

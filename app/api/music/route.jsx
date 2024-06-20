@@ -15,8 +15,7 @@ export async function POST(req) {
         const body = await req.json();
         const { prompt } = body;
 
-        console.log("request body in route: ", body)
-
+        
         if (!userId) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
@@ -50,12 +49,12 @@ export async function POST(req) {
         await increaseAppLimit(req);
 
 
-        console.log("response from replicate: ", response);
+       
         
         return NextResponse.json(response);
 
     } catch (error) {
-        console.log("Error in music route: ", error);
+        
         return new NextResponse("error", { status: 500 });
     }
 }

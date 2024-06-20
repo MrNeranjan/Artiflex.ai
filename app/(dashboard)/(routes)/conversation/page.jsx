@@ -55,7 +55,7 @@ export default function ConversationPage() {
       };
 
 
-      console.log("Response from RapidAPI ConversationPage: ", responseMessage);
+     
       setMessages((current)=>[...current,userMessage,responseMessage])
       form.reset();
 

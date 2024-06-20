@@ -54,7 +54,6 @@ export default function CodePage() {
       };
 
 
-      console.log("Response from RapidAPI CodePage: ", responseMessage);
       setMessages((current)=>[...current,userMessage,responseMessage])
       form.reset();
 
@@ -65,7 +64,7 @@ export default function CodePage() {
       }else{
         toast.error("Failed to generate response. Please try again later.");
       }
-      console.log("Error in conversation page: ", error);
+     
     }finally{
       router.refresh();
     }

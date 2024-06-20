@@ -57,7 +57,7 @@ export async function POST(req) {
         return NextResponse.json(response);
 
     } catch (error) {
-        console.log("Error in music route: ", error);
+    
         return new NextResponse("error", { status: 500 });
     }
 }

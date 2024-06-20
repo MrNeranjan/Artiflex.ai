@@ -112,7 +112,7 @@ export async function POST(req) {
         return NextResponse.json(response.data);
 
     } catch (error) {
-        console.log("Error in image route: ", error);
+       
         return new NextResponse("error", { status: 500 });
     }
 }
