@@ -1,5 +1,5 @@
 
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/Navbar";
 import  SideBar  from "./../../components/SideBar";
 import {getAppLimitCount} from "@/lib/api-limit";
 
